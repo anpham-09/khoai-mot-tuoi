@@ -238,3 +238,14 @@ body.immersive .book-frame.book-opening{transition:transform 1.5s cubic-bezier(.
 }
 /* Màn hình lớn: giữ đúng bố cục trang gốc rồi phóng to cả cuốn sách cho vừa màn hình. */
 @media(min-width:1101px){body.immersive .book-frame{width:1180px;height:690px;flex:none}}
+
+/* Bỏ thanh số trang ở dưới; lật trước/sau bằng hai nút tròn nhỏ ở mép màn hình. */
+body.immersive .reader-controls{display:none}
+body.immersive .edge-button,body.immersive.ui-idle .edge-button{display:flex;opacity:.8;pointer-events:auto}
+body.immersive .edge-button:hover{opacity:1}
+body.immersive .edge-button:disabled,body.immersive.ui-idle .edge-button:disabled,body.immersive.is-closed .edge-button{opacity:0;pointer-events:none}
+@media(max-width:760px){
+  body.immersive .edge-button{display:flex;width:36px;height:36px;font-size:24px;padding-bottom:3px;opacity:.72}
+  body.immersive .edge-button.previous{left:4px}
+  body.immersive .edge-button.next{right:4px}
+}

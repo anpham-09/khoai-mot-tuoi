@@ -43,7 +43,8 @@ Mỗi lần lật hiển thị một trang album gồm hai mặt giấy trên m�
 - Cuốn album chiếm gần trọn màn hình, đặt trên nền bàn gỗ tối. Không còn thanh tiêu đề, dòng chương hay chân trang bên ngoài.
 - Khi mở từ bìa, cuốn sách bìa cứng đang gập nằm giữa màn hình. Chạm vào bìa (hoặc nhấn Enter, phím →) để lật bìa mở ra.
 - Lật trang có hiệu ứng trang giấy 3D và bóng đổ: máy tính lật cả tờ quanh gáy sách, điện thoại lật từng trang quanh mép trái.
-- Nút nhạc, mục lục và lật trang là các nút nổi nhỏ, tự ẩn sau khoảng 3 giây không chạm và hiện lại khi chạm hoặc di chuột.
+- Lật trang tới và lật lại bằng hai nút tròn nhỏ ‹ › ở hai mép màn hình (có cả trên điện thoại), vuốt ngang hoặc phím ← →. Không còn thanh số trang ở dưới che ảnh.
+- Nút nhạc và mục lục là nút nổi nhỏ ở góc trên, tự ẩn sau khoảng 3 giây không chạm và hiện lại khi chạm hoặc di chuột.
 - Trên màn hình lớn, cả cuốn sách được phóng to theo tỉ lệ cho vừa màn hình nên chữ và ảnh to lên cùng nhau.
 - Người dùng bật chế độ giảm chuyển động sẽ vào thẳng album, không có hoạt ảnh.
 
