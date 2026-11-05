@@ -53,7 +53,7 @@ Mỗi lần lật hiển thị một trang album gồm hai mặt giấy trên m�
 - Mục lục mở nhanh các chương; Home về bìa, End đến trang cuối.
 - Bấm ảnh để xem lớn; chuyển qua đủ 99 ảnh bằng nút hoặc phím mũi tên, Escape đóng ảnh.
 - Giữ lại lá thư ở trang cuối dưới dạng văn bản UTF-8.
-- Giai điệu Happy Birthday vui tươi, phối hộp nhạc với đàn gảy và nhịp đệm nhẹ. Âm thanh tổng hợp bằng Web Audio, chỉ phát sau khi bấm và tắt khi rời tab; hoạt động cả khi không có mạng.
+- Giai điệu Happy Birthday vui tươi, phối hộp nhạc với đàn gảy và nhịp đệm nhẹ. Nhạc bật sẵn và tự phát ở lần chạm đầu tiên (thường là lúc chạm mở bìa sách), vì trình duyệt không cho phát âm thanh trước khi người xem chạm vào trang. Nút "Tắt nhạc" ở góc trên tắt nhạc, và máy đó nhớ lựa chọn cho những lần mở sau. Nhạc tạm dừng khi rời tab. Âm thanh tổng hợp bằng Web Audio, hoạt động cả khi không có mạng.
 - Hiệu ứng lật giấy, dây cờ sinh nhật ở bìa, bóng bay và ánh sao nền nhẹ.
 - Chương sinh nhật có pháo giấy và bánh sinh nhật tương tác: bấm thổi nến, nhận lời chúc và thắp nến lại.
 - Hiệu ứng hỗ trợ chế độ giảm chuyển động, tự dừng khi chuyển sang tab khác.

@@ -232,21 +232,33 @@
     musicButton.setAttribute('aria-label',playing?'Tắt nhạc Happy Birthday':'Bật nhạc Happy Birthday');
     musicButton.querySelector('.music-label').textContent=playing?'Tắt nhạc':'Bật nhạc';
   }
-  function stopMusic(){birthdayMusic.stop();musicLabel(false);}
-  musicButton.title='Happy Birthday · Hộp nhạc sinh nhật';
-  musicButton.addEventListener('click',async()=>{
-    if(birthdayMusic.playing){stopMusic();return;}
-    musicButton.disabled=true;
+  // Nhạc bật sẵn: trình duyệt chỉ cho phát sau lần chạm đầu tiên, nên nhạc vang lên đúng lúc mở sách.
+  // Ai tắt nhạc thì máy đó nhớ lựa chọn cho những lần mở sau.
+  let musicWanted=true;try{musicWanted=localStorage.getItem('khoai-music')!=='off';}catch{}
+  function rememberMusic(on){musicWanted=on;try{localStorage.setItem('khoai-music',on?'on':'off');}catch{}musicLabel(on);}
+  function pauseMusic(){birthdayMusic.stop();}
+  async function startMusic(){
+    if(!musicWanted||birthdayMusic.playing||document.hidden)return;
     try{
       await birthdayMusic.play();
-      if(document.hidden){stopMusic();return;}
-      musicLabel(true);
+      if(!musicWanted||document.hidden){pauseMusic();return;}
       $('.audio-status').textContent='Đang phát Happy Birthday, phiên bản hộp nhạc sinh nhật.';
     }catch{
-      stopMusic();
       $('.audio-status').textContent='Trình duyệt này chưa mở được nhạc. Con vẫn có thể xem trọn album nhé.';
-    }finally{musicButton.disabled=false;}
+    }
+  }
+  function onFirstGesture(e){
+    if(e.target.closest?.('#music-toggle'))return;
+    ['pointerdown','keydown','touchend'].forEach(t=>removeEventListener(t,onFirstGesture,true));
+    startMusic();
+  }
+  function armMusic(){if(musicWanted)['pointerdown','keydown','touchend'].forEach(t=>addEventListener(t,onFirstGesture,true));}
+  musicLabel(musicWanted);armMusic();
+  musicButton.title='Happy Birthday · Hộp nhạc sinh nhật';
+  musicButton.addEventListener('click',async()=>{
+    if(musicWanted){rememberMusic(false);pauseMusic();$('.audio-status').textContent='Đã tắt nhạc.';return;}
+    rememberMusic(true);musicButton.disabled=true;try{await startMusic();}finally{musicButton.disabled=false;}
   });
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopMusic();});
-  window.addEventListener('pagehide',stopMusic);
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseMusic();else armMusic();});
+  window.addEventListener('pagehide',pauseMusic);
 })();
