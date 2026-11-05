@@ -247,12 +247,17 @@
       $('.audio-status').textContent='Trình duyệt này chưa mở được nhạc. Con vẫn có thể xem trọn album nhé.';
     }
   }
-  function onFirstGesture(e){
+  // Chỉ các sự kiện chạm/bấm/phím hoàn chỉnh mới được trình duyệt cho phép mở âm thanh
+  // (trên điện thoại, lúc đặt ngón tay xuống chưa tính). Thử lại ở lần chạm sau nếu bị chặn.
+  const gestureEvents=['touchend','click','keydown'];
+  function disarmMusic(){gestureEvents.forEach(t=>removeEventListener(t,onFirstGesture,true));}
+  async function onFirstGesture(e){
     if(e.target.closest?.('#music-toggle'))return;
-    ['pointerdown','keydown','touchend'].forEach(t=>removeEventListener(t,onFirstGesture,true));
-    startMusic();
+    if(!musicWanted||birthdayMusic.playing){disarmMusic();return;}
+    await startMusic();
+    if(birthdayMusic.playing)disarmMusic();
   }
-  function armMusic(){if(musicWanted)['pointerdown','keydown','touchend'].forEach(t=>addEventListener(t,onFirstGesture,true));}
+  function armMusic(){if(musicWanted)gestureEvents.forEach(t=>addEventListener(t,onFirstGesture,true));}
   musicLabel(musicWanted);armMusic();
   musicButton.title='Happy Birthday · Hộp nhạc sinh nhật';
   musicButton.addEventListener('click',async()=>{
